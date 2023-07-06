@@ -458,8 +458,7 @@ public class OpportunityTriggerHandler extends TriggerHandler {
         Set<String> stageList = new Set<String>{'세금계산서업무','채권추심','광고비입금'};
         Set<String> stageFail = new Set<String>{'수주실패_광고미진행','수주실패_대행사렙사비딩실패','수주실패_제안컨펌실패'};
         //(DISCUSSION(Hoon) : 2023-04-26) - 함태헌 메니저 삭제(Hazard)
-        //(DISCUSSION(Hoon) : 2023-07-06) - 외부 I/F로 인해 Dev 계정 추가 (jsForce)
-        Set<String> user = new Set<String>{'SF Admin', 'Cobb', 'BM', 'disc', 'yim', 'Dev'};
+        Set<String> user = new Set<String>{'SF Admin', 'Cobb', 'BM', 'disc', 'yim'};
         //Set<String> approvalUser = new Set<String>{'Hazard','SF Admin','Cobb','Benjamin','Eve','Lauren','Jarrod','Leo','Bling','BM'};
         // 사용자 확인
         User u = [select Alias from User where Username = :UserInfo.getUserName()][0];
