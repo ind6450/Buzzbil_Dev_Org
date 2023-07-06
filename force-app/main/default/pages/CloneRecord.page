@@ -1,0 +1,48 @@
+<apex:page controller="ctrl_CloneObject" action="{!init}" showHeader="false" sidebar="false" standardStylesheets="false">
+    <c:jquery />
+    <apex:form >
+        <apex:actionFunction name="refreshJSFunction" reRender="js_function" />
+        <apex:outputText >
+            <script>
+                var timeout1 = null;
+                var timeout2 = null;
+                var timeout3 = null;
+
+                $jq(function(){ 
+                    timeout1 = setTimeout("refreshJSFunction(); chkResult1();", 1000);
+                    timeout2 = setTimeout("refreshJSFunction(); chkResult1();", 3000);
+                    timeout3 = setTimeout("refreshJSFunction(); chkResult1();", 5000);
+                });
+
+                // timeout clear
+                function clearTimeOutAll() {
+                    clearTimeout(timeout1);
+                    clearTimeout(timeout2);
+                    clearTimeout(timeout3);
+                }
+            </script>
+        </apex:outputText>          
+        <apex:outputText id="js_function">
+            <script>
+                // 결과 체크
+                function chkResult1() {                 
+                    var error_msg = '{!error_msg}';
+                    var success_msg = '{!success_msg}';
+
+                    if(error_msg != '') {
+                        clearTimeOutAll();
+                        alert(error_msg); // 에러 발생시
+                        top.location.href ='/{!source_record_id}';
+
+                    } else if(success_msg != ''){
+                        clearTimeOutAll();
+                        alert(success_msg); // 성공시
+                        top.location.href ='/{!copied_record_id}';
+
+                    }//else if
+                }//function()
+            </script>
+        </apex:outputText>
+
+    </apex:form>        
+</apex:page>
